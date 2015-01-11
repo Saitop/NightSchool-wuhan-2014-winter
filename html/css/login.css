@@ -1,0 +1,183 @@
+body{
+    font-family:"黑体";
+    font-size:0.9em;
+  }
+
+a{
+  text-decoration-line: inherit;
+  color: black;
+}
+
+.logo{
+  height:10%;
+  margin-top: 2%;
+}
+.login_show_pic{
+  float: left;
+  width: 40%;
+  padding-left: 10%;
+}
+.login_show_pic img{
+  align-self: center;
+}
+.login_form {
+  float: left;
+  width: 20%;
+  padding-left:4%;
+  padding: 20px;
+  border-color: gainsboro;
+  border-style: inset;
+  border-width: thin;
+  border-top-color: orange;
+  border-top-style: outset;
+  border-top-width: medium;
+  margin: 20px;
+
+}
+.input_text{
+  float: left;
+  width: 100%;
+  height:25px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 30px;
+  border-color: lightgrey;
+  border-width: thin;
+}
+#login_name{
+  background: url(../imgs/login/person.jpg) center left;
+  background-repeat: no-repeat;
+}
+#login_password{
+  background: url(../imgs/login/password.jpg) center left;
+  background-repeat: no-repeat;
+}
+#register_name{
+  background: url(../imgs/login/input.png) center right;
+  background-repeat: no-repeat;
+}
+#register_password,#register_confirm_password{
+  background: url(../imgs/login/password.png) center right;
+  background-repeat: no-repeat;
+}
+
+
+.other_href_left{
+  margin-top: 10px;
+  float: left;
+}
+.other_href_right{
+  margin-top: 10px;
+  float: right;
+}
+.other_href{
+  margin-top: 10px;
+  margin-bottom: 20px;
+  float: left;
+  width:100%;
+}
+.login_button{
+  color:white;
+  font-size:1.2em;
+  float:right;
+  width: 100%;
+  height:30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: orange;
+  border: 0;
+}
+
+
+.input_form{
+  float:left;
+  width:40%;
+  margin-left:15%;
+  margin-top:100px;
+  align-content: center;
+  overflow: hidden;
+}
+
+.register_input_text{
+  width:80%;
+  float:left;
+  height:50px;
+}
+
+.register_input_text span{
+  width:20%;
+  float:left;
+  padding-top: 10px;
+}
+.register_input_text span:first-child{
+  width:2%;
+  color:red;
+  float:left;
+  padding-top: 10px;
+}
+.register_input_text input{
+  width:70%;
+  height:40px;
+  float:left;
+  border-color: lightgrey;
+  border-width: thin;
+  padding-right: 30px;
+}
+
+.href_user_aggrement{
+  color:blue;
+}
+
+.register_button{
+  float:left;
+  width:60%;
+  height:40px;
+  margin-left:15%;
+  background-color: orange;
+  border: 0;
+  color: white;
+  font-size:1.4em;
+}
+.add_button{
+  margin-top:30px;
+  float:left;
+  width:60%;
+  height:20px;
+  margin-left:15%;
+  background-color: orange;
+  border: 0;
+  color: white;
+  font-size:1em;
+}
+
+.content{
+  width:80%;
+  margin-left:10%;
+  margin-right:10%;
+}
+.goods{
+  width:19%;
+  height:350px;
+  float:left;
+  padding:4px;
+  margin-left:5%;
+  border-color: gainsboro;
+  border-style: ridge;
+  border-width: thin;
+  margin-bottom:5%;
+}
+.price{
+  margin-top:20px;
+  color:orange;
+  float:left;
+}
+.desc{
+  float:left;
+}
+.free_shipping{
+  margin-top:20px;
+  float:left;
+  margin-left:6px;
+  color:white;
+  background-color: orange;
+}
