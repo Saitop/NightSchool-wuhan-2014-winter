@@ -3,35 +3,34 @@
   <head>
     <title>欢迎注册</title>
     <link rel="stylesheet" href="css/login.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="css/checkbox.css" media="screen" title="no title" charset="utf-8">
   </head>
   <body>
     <div class="logo">
       <img src="imgs/login/logo.png" alt="" />
     </div>
-    <div class="input_form">
-      <div class="register_input">
-        <div class="register_input_text">
-          <span>*</span><span>用户名</span>
-          <input id="register_name" name="user_name" value="">
-        </div>
-        <div class="register_input_text">
-          <span>*</span><span>请设置密码</span>
-          <input id="register_password" name="password" value="">
-        </div>
-        <div class="register_input_text">
-          <span>*</span><span>请确认密码</span>
-          <input id="register_confirm_password" name="confirm_password" value="">
-        </div>
-        <div class="other_href">
+    <div class="register_input">
+      <div class="register_input_unit">
+        <span>*</span><span>用户名</span>
+        <input class="theme_input_text" id="register_name" name="user_name" value="">
+      </div>
+      <div class="register_input_unit">
+        <span>*</span><span>请设置密码</span>
+        <input class="theme_input_text" id="register_password" name="password" value="">
+      </div>
+      <div class="register_input_unit">
+        <span>*</span><span>请确认密码</span>
+        <input class="theme_input_text" id="register_confirm_password" name="confirm_password" value="">
+      </div>
+      <div class="other_href">
         <div class="checkbox">
-  		      <input type="checkbox" value="1" id="checkboxInput" name="" />
-	  	        <label for="checkboxInput"></label>
+    	      <input type="checkbox" value="1" id="checkboxInput" name="" />
+  	        <label for="checkboxInput"></label>
   	    </div><span>  我已同意并阅读</span>
-          <a href="http://rule.taobao.com/detail-62.htm?spm=0.0.0.0.aPyART" class="href_user_aggrement"><span>《我买用户注册协议》</span></a>
-        </div>
-        <div>
-          <input class="register_button" type="button" name="register_button" value="立即注册">
-        </div>
+              <a href="http://rule.taobao.com/detail-62.htm?spm=0.0.0.0.aPyART" class="href_user_aggrement"><span>《我买用户注册协议》</span></a>
+      </div>
+      <div>
+        <input class="theme_button register_button" type="button" name="register_button" value="立即注册">
       </div>
     </div>
   </body>

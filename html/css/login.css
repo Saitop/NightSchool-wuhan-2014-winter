@@ -1,11 +1,6 @@
 body{
     font-family:"黑体";
     font-size:0.9em;
-  }
-
-a{
-  text-decoration-line: inherit;
-  color: black;
 }
 .body,.info_head,.info_footer{
   width:80%;
@@ -13,7 +8,6 @@ a{
   float:left;
   margin-left:10%;
 }
-
 header{
   background-color: gainsboro;
   overflow: hidden;
@@ -21,7 +15,6 @@ header{
   margin-left: 10%;
   margin-top:-10px;
   float: left;
-
 }
 .header_right{
   float: left;
@@ -56,9 +49,46 @@ header{
   border-top-style: outset;
   border-top-width: medium;
   margin: 20px;
-
 }
-.input_text{
+/*INPUT*/
+.register_input{
+  float:left;
+  width:40%;
+  margin-left:15%;
+  margin-top:100px;
+  align-content: center;
+  overflow: hidden;
+}
+.register_input_unit{
+  height:50px;
+  width:80%;
+}
+.register_input_unit span{
+  width:20%;
+  float:left;
+  padding-top: 10px;
+}
+.register_input_unit span:first-child{
+  width:2%;
+  color:red;
+  float:left;
+  padding-top: 10px;
+}
+.edit_input_unit{
+  float:left;
+  padding-left:10%;
+  margin-bottom:20px;
+  width:80%;
+}
+.edit_input_unit>span{
+  display: inline-block;
+  width:10%;
+  float:left;
+  padding-right:4%;
+  text-align: right;
+  margin-top:15px;
+}
+.theme_input_text{
   float: left;
   width: 100%;
   height:25px;
@@ -79,13 +109,83 @@ header{
 #register_name{
   background: url(../imgs/login/input.png) center right;
   background-repeat: no-repeat;
+  width:70%;
 }
 #register_password,#register_confirm_password{
   background: url(../imgs/login/password.png) center right;
   background-repeat: no-repeat;
+  width:70%;
+}
+#input_new_price,#input_old_price{
+  width:15%;
+  margin-right:40%;
+  padding-left:1px;
+}
+#input_title{
+  width:50%;
+  padding-left:1px;
 }
 
-
+/*BUTTON START*/
+.theme_button{
+  color:white;
+  float:left;
+  width: 100%;
+  height:30px;
+  font-family: inherit;
+  background-color:  rgb(255, 69, 0);
+  border: 0;
+  border-radius: 4px;
+}
+.publish_button{
+  background-color: rgb(72, 152, 1);
+  margin-left:10%;
+  width: 16%;
+  height:30px;
+}
+.login_button{
+  font-size:1.2em;
+}
+.register_button{
+  height:40px;
+  font-size:1.4em;
+  width: 70%;
+}
+.add_button{
+  margin-top:30px;
+  width:45%;
+  height:24px;
+  margin-left:5%;
+  border-radius: 1px;
+}
+.option_button{
+  float: left;
+  margin-left: 55%;
+  padding-top: 3%;
+  overflow: hidden;
+  width: 30%;
+}
+/*BUTTON END*/
+.theme_color{
+  color:rgb(255, 69, 0);
+}
+.theme_color_bg{
+  background-color:rgb(255,69,0);
+  color:white;
+}
+.small_block{
+  float:left;
+  width:50px;
+  height:20px;
+}
+/*HREF START*/
+a{
+  text-decoration-line: inherit;
+  color: black;
+}
+.href_user_aggrement{
+  color:rgb(52,151,254);
+}
 .other_href_left{
   margin-top: 10px;
   float: left;
@@ -101,133 +201,7 @@ header{
   width:100%;
   overflow:hidden;
 }
-.login_button{
-  color:white;
-  font-size:1.2em;
-  float:right;
-  width: 100%;
-  height:30px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-family: inherit;
-  background-color:  rgb(255, 69, 0);
-  border: 0;
-  border-radius: 4px;
-}
-
-
-.input_form{
-  float:left;
-  width:40%;
-  margin-left:15%;
-  margin-top:100px;
-  align-content: center;
-  overflow: hidden;
-}
-
-.register_input_text{
-  width:80%;
-  float:left;
-  height:50px;
-}
-
-.register_input_text span{
-  width:20%;
-  float:left;
-  padding-top: 10px;
-}
-.register_input_text span:first-child{
-  width:2%;
-  color:red;
-  float:left;
-  padding-top: 10px;
-}
-.register_input_text input{
-  width:70%;
-  height:40px;
-  float:left;
-  border-width: thin;
-  padding-right: 30px;
-  padding-left: 2px;
-  border-style: ridge;
-
-}
-
-.checkbox {
-	width: 16px;
-	position: relative;
-  float:left;
-  border-radius: 4px;
-  margin-left: 15%;
-  margin-right: 10px;
-
-}
-
-.checkbox label {
-	cursor: pointer;
-	position: absolute;
-	width: 16px;
-	height: 16px;
-	top: 0;
-  left: 0;
-	background:rgb(52,151,254);
-	border:1px solid #ddd;
-  border-radius: 4px;
-}
-
-.checkbox label:after {
-	opacity: 0.2;
-	content: '';
-	position: absolute;
-	width: 7px;
-	height: 4px;
-	background: transparent;
-	top: 4px;
-	left: 4px;
-	border: 2px solid #fff;
-	border-top: none;
-	border-right: none;
-
-	-webkit-transform: rotate(-45deg);
-	-moz-transform: rotate(-45deg);
-	-o-transform: rotate(-45deg);
-	-ms-transform: rotate(-45deg);
-	transform: rotate(-45deg);
-}
-
-
-.checkbox input[type=checkbox]:checked + label:after {
-	opacity: 3;
-}
-
-.href_user_aggrement{
-  color:rgb(52,151,254);
-}
-
-.register_button{
-  float:left;
-  width:60%;
-  height:40px;
-  margin-left:15%;
-  background-color:  rgb(255, 69, 0);
-  border: 0;
-  color: white;
-  font-size:1.4em;
-  border-radius: 4px;
-}
-.add_button{
-  margin-top:30px;
-  float:left;
-  width:45%;
-  height:24px;
-  margin-left:5%;
-  background-color: rgb(250, 50, 1);
-  border: 0;
-  color: white;
-  font-size:0.8em;
-  font-family: inherit;
-  border-radius: 1px;
-}
+/*HREF END*/
 .goods{
   width:20%;
   height:350px;
@@ -240,26 +214,10 @@ header{
   border-width: thin;
   margin-bottom:5%;
 }
-.price{
-  margin-top:20px;
-  margin-left:5%;
-  color:orange;
-  float:left;
-}
-
 .desc{
   float:left;
   margin-left:5%;
-
 }
-.free_shipping{
-  margin-top:20px;
-  float:left;
-  margin-left:6px;
-  color:white;
-  background-color: orange;
-}
-
 .head{
   overflow:hidden;
   width:80%;
@@ -270,14 +228,6 @@ header{
   margin-bottom:2%;
   margin-left:10%;
   box-shadow: 0px 1px 5px 0px rgb(217, 217, 217);
-}
-
-.option_button{
-  float: left;
-  margin-left: 55%;
-  padding-top: 3%;
-  overflow: hidden;
-  width: 30%;
 }
 .user_info{
   float:left;
@@ -293,53 +243,16 @@ header{
 .cart img{
   width:16px;
 }
-/*editGoods*/
 #addImg{
   width:100px;
   height:100px;
   border:0;
   display:none;
 }
-.edit_input{
-  float:left;
-  padding-left:10%;
-  margin-bottom:20px;
-  width:80%;
-}
 .input_area{
   width:80%;
   float:left;
   margin-left:2%;
-}
-
-#input_title{
-  float:left;
-  width:50%;
-}
-.edit_input>span{
-  display: inline-block;
-  width:10%;
-  float:left;
-  padding-right:4%;
-  text-align: right;
-  margin-top:3px;
-}
-.publish_button{
-  color:white;
-  background-color: rgb(72, 152, 1);
-  font-size:1.2em;
-  float:left;
-  margin-left:10%;
-  width: 16%;
-  height:30px;
-  border: 0;
-  font-family: inherit;
-  border-radius: 4px;
-}
-.input_price{
-  float:left;
-  width:15%;
-  margin-right:40%;
 }
 /*cart*/
 .all_goods{
@@ -431,12 +344,10 @@ header{
   width:12.5%;
   text-align:center;
 }
-
 .desc_left{
   float:left;
   width:20%;
 }
-
 .desc_right{
   overflow:hidden;
   float:left;
@@ -449,4 +360,124 @@ header{
   height:80%;
   width:50%;
   padding-right:50%;
+}
+
+/*managerGoods*/
+.left{
+  width: 20%;
+  overflow: hidden;
+  height: 600px;
+  float:left;
+  border-color: gainsboro;
+  border-style: inset;
+  border-width: thin;
+  margin-left:20px;
+}
+
+.right{
+  width: 70%;
+  overflow: hidden;
+
+  float:left;
+}
+.menu{
+  color: rgb(92,151,212);
+  width: 90px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.undefine{
+  background-color: rgb(92,151,212);
+  color:white;
+  width:90px;
+  padding:4px;
+}
+.search_bar{
+  height:40px;
+  width:100%;
+  background-color: rgb(245,245,245);
+  float:left;
+  padding-top:10px;
+  margin-top:2px;
+}
+#serach_goods{
+  width:250px;
+}
+#search_button{
+  width:56px;
+}
+#name{
+  float:left;
+  width:100%;1
+  margin-top:10px;
+  padding:0 0 4 0;
+}
+.header_desc{
+  width:100%;
+  float:left;
+  border-top-color: rgb(89,151,212);
+  border-style:outset;
+  background-color:rgb(246,250,253);
+ border-width: 4 0 0 0;
+ over-flow:hidden;
+}
+.form_manager{
+  overflow:hidden;
+  width:100%;
+  float:left;
+  margin-top:40px;
+}
+.a_1,.a_2,.a_3,.a_4,.a_5,.a_6{
+  float:left;
+}
+.a_1{
+  width:20%;
+  padding: 3 40 3 40;
+}
+.a_2,.a_3,.a_4,.a_5,.a_6{
+  width:10%;
+  padding: 3 10 3 10;
+}
+.a_3,.a_4{
+  color:blue;
+  background: url(../imgs/up.png) center right;
+  background-repeat: no-repeat;
+
+}
+.a_5{
+  color:blue;
+  background: url(../imgs/down.png) center right;
+  background-repeat: no-repeat;
+
+}
+.select_all_top{
+  border-bottom-color: rgb(233,233,233);
+  border-style:inset;
+  border-width: 0 0 3 0;
+  padding:4 0 8 0;
+}
+.select_all_bottom{
+  border-bottom-color: rgb(233,233,233);
+  border-style:inset;
+  border-width: 0 0 3 0;
+  padding:4 0 8 0;
+  float:left;
+  width:100%;
+}
+.unit img{
+  width:60px;
+  height:60px;
+  float:left;
+}
+.unit{
+  over-flow:hidden;
+}
+.unit input{
+  float:left;
+}
+.goods_desc{
+  float:left;
+  color:blue;
+  width:20%;
 }
