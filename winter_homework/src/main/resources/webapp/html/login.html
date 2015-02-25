@@ -1,0 +1,53 @@
+<! DOCTTYPE HTML>
+<html>
+  <head>
+    <title>欢迎登陆</title>
+      <link rel="stylesheet" href="css/login.css" media="screen" title="no title" charset="utf-8">
+    <script src="js/cookie.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/login.js"></script>
+  </head>
+
+  <body>
+    <div class="logo">
+      <a href="index.html">
+        <img src="imgs/login/logo.png" alt="" />
+      </a>
+    </div>
+
+    <div class="login_show_pic">
+      <img src="imgs/login/show_1.png" alt="" />
+    </div>
+
+    <div class="login_form">
+      <div >
+        <p>
+          登录
+        </p>
+      </div>
+      <div id="login_message"></div>
+      <div >
+        <input class="theme_input_text" id="login_name" name="login_name" placeholder="手机号/会员名/邮箱名" onblur="getName()">
+        <input type="password" class="theme_input_text" id="login_password" name="login_password" placeholder="登录密码">
+      </div>
+      <div class="other_href">
+        <div class="other_href_left">
+          安全登录插件
+        </div>
+        <div  class="other_href_right">
+          <a href="#">忘记登录密码?</a>
+        </div>
+      </div>
+      <div >
+        <input class="theme_button login_button " id="login_button"type="button" name="login_button" value="登录" onclick="login()">
+      </div>
+      <div class="other_href_right">
+        <a href="register.html">免费注册</a>
+      </div>
+    </div>
+    <footer>
+
+    </footer>
+
+  </body>
+</html>

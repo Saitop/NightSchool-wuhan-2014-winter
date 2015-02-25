@@ -1,0 +1,28 @@
+apply plugin: 'liquibase'
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.augusttechgroup:gradle-liquibase-plugin:0.5.1'
+    }
+}
+
+liquibase {
+    changelogs {
+        main {
+            file = file('src/main/resouces/config/changelog.xml')
+        }
+    }
+    databases {
+        postgresql {
+            url = "jdbc:postgresql://localhost:5432/shopping_mall"
+            driver="org.postgresql.Driver"
+            username = "twer"
+        }
+    }
+    defaultDatabase = databases.postgresql
+}
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.2'
+}
