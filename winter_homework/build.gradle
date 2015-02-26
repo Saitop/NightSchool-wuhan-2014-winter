@@ -1,6 +1,29 @@
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'application'
+apply plugin: 'liquibase'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'net.saliman:gradle-liquibase-plugin:1.0.0'
+        classpath 'com.h2database:h2:1.3.159'
+        classpath 'org.liquibase.ext:liquibase-postgresql:3.0'
+    }
+}
+
+liquibase {
+    activities {
+        main {
+            changeLogFile 'src/main/resources/config/changelog.xml'
+            url 'jdbc:postgresql://localhost:5432/shopping_mall'
+            username 'twer'
+            password '123456'
+        }
+    }
+}
 
 mainClassName = "org.nightschool.Application"
 
@@ -8,7 +31,6 @@ repositories {
     mavenCentral()
     mavenLocal()
 }
-
 dependencies {
     testCompile 'junit:junit:4.11'
     compile 'io.dropwizard:dropwizard-core:0.7.1'
@@ -16,10 +38,10 @@ dependencies {
     compile 'postgresql:postgresql:9.1-901.jdbc4'
     compile 'org.mybatis:mybatis:3.2.2'
     compile 'javax.enterprise:cdi-api:1.2'
-
+    compile 'org.liquibase:liquibase-core:3.3.2'
+    compile 'org.liquibase.ext:liquibase-postgresql:3.0'
+    compile 'net.sourceforge.jtds:jtds:1.2.7'
 }
-
-
 
 sourceSets {
     main {
@@ -39,7 +61,6 @@ sourceSets {
         }
     }
 }
-
 
 run {
     args 'server', 'nightschool.yml'
