@@ -20,7 +20,6 @@ public class JDBCService
         connection.createStatement().execute(sql);
         connection.close();
         return true;
-
     }
 
 

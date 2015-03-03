@@ -202,22 +202,8 @@ a{
   overflow:hidden;
 }
 /*HREF END*/
-.goods{
-  width:20%;
-  height:350px;
-  float:left;
-  padding:4px;
-  margin-left:2%;
-  margin-right:2%;
-  border-color: gainsboro;
-  border-style: ridge;
-  border-width: thin;
-  margin-bottom:5%;
-}
-.desc{
-  float:left;
-  margin-left:5%;
-}
+
+
 .head{
   overflow:hidden;
   width:80%;

@@ -19,17 +19,28 @@ public interface UserMapper {
     @Insert("insert into web_user(name, password) Values(#{userName},#{password});")
     public boolean insert(User user);
 
-    @Select("select * from web_user where name like #{name}")
+    @Select("select * from web_user where name like #{name};")
     @Results(value = {
             @Result(property = "userName", column = "name", javaType = String.class, jdbcType = JdbcType.VARCHAR),
             @Result(property = "password", column = "password", javaType = String.class, jdbcType = JdbcType.VARCHAR) })
     public User findByName(String name);
 
-    @Select("select count(*) from web_user where name like #{name}")
+    @Select("select count(*) from (select name as username from web_user union select name as username from admin_user)as newTable where username like #{name};")
+    @Result(javaType = Boolean.class, jdbcType = JdbcType.INTEGER)
     public boolean isUserExist(String name);
+
+    @Select("select count(*) from admin_user where name like #{name};")
+    public boolean isAdmin(String name);
 
     @Select("select count(*) from web_user where name = #{userName} and password = #{password}")
     @Result(javaType = Boolean.class, jdbcType = JdbcType.INTEGER)
     public boolean isPasswordCorrect(User user);
+
+    @Select("select count(*) from admin_user where name = #{userName} and password = #{password}")
+    @Result(javaType = Boolean.class, jdbcType = JdbcType.INTEGER)
+    public boolean isAdminPasswordCorrect(User user);
+
+    @Select("select id from web_user where name = #{userName}")
+    public int getIdByName(String name);
     /*modify*/
 }

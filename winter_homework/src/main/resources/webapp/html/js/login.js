@@ -27,11 +27,26 @@ var name = $("#login_name").val();
       });
 }
 function login(){
-var u={
-userName:$("#login_name").val(),
-password:$("#login_password").val()};
-doLogin(u);
+    var u={
+    userName:$("#login_name").val(),
+    password:$("#login_password").val()};
+$.ajax({
+          type:"POST",
+          url:"/users/isAdmin",
+          data:JSON.stringify($("#login_password").val()),
+          contentType:"application/json",
+          success:function(result){
+          if(result){
+              doAdminLogin(u);
+          }
+         else{
+            doLogin(u);
+         }
+         }
+     });
+
 }
+
 
 function doLogin(u){
  $.ajax({
@@ -47,6 +62,25 @@ function doLogin(u){
            setCookie("name",$("#login_name").val());
            setCookie("password",$("#login_password").val());
            document.location.href="index.html";
+           }
+         }
+      });
+}
+function doAdminLogin(u){
+ $.ajax({
+          type:"POST",
+          url:"/users/adminLogin",
+          data:JSON.stringify(u),
+          contentType:"application/json",
+          success:function(match){
+           if(!match){
+            $("#login_message").html("用户名与密码不匹配");
+            }
+           else{
+           setCookie("name",$("#login_name").val());
+           setCookie("password",$("#login_password").val());
+            setCookie("admin",true);
+           document.location.href="index.html?id=1";
            }
          }
       });

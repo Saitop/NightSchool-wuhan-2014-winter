@@ -16,29 +16,26 @@ public class CommodityMapperTest {
     CommodityMapper mapper;
 
     @Test
-    public void get_commodity_id_by_name() throws Exception {
+    public void get_commodity_id_by_name_if_operater_is_right() throws Exception {
         mapper = MyBatisUtil.getFactory().openSession().getMapper(CommodityMapper.class);
-        mapper.insert(new Commodity("Paper"));
-        int id=mapper.getIdByName("Paper");
-        assertTrue(id > 1);
+        int id=mapper.getIdByName("牙刷",1);
+        assertTrue(id==1);
     }
 
     @Test
     public void test_insert_one_record() throws Exception {
         mapper = MyBatisUtil.getFactory().openSession().getMapper(CommodityMapper.class);
-        mapper.insert(new Commodity());
-        assertThat(mapper.getCommodities().size(), is(1));
+        mapper.insert(new Commodity("book","desc","imgUrl",12,2,200,22,1));
+        assertThat(mapper.getCommodities().size(), is(2));
     }
 
     @Test
     public void test_delete_one_record() throws Exception {
         mapper = MyBatisUtil.getFactory().openSession().getMapper(CommodityMapper.class);
-        mapper.insert(new Commodity("User"));
-        assertThat(mapper.getCommodities().size(),is(1));
-        int id=mapper.getIdByName("User");
+        mapper.insert(new Commodity("book","desc","imgUrl",12,2,200,22,1));
+        assertThat(mapper.getCommodities().size(),is(2));
+        int id=mapper.getIdByName("book",1);
         mapper.deleteByID(id);
-        assertThat(mapper.getCommodities().size(),is(0));
+        assertThat(mapper.getCommodities().size(),is(1));
     }
-
-
 }

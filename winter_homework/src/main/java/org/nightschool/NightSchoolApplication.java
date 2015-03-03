@@ -4,6 +4,8 @@ import io.dropwizard.Application;
 import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import org.nightschool.controller.CartController;
+import org.nightschool.controller.CommodityController;
 import org.nightschool.controller.UserController;
 
 
@@ -12,26 +14,18 @@ public class NightSchoolApplication extends Application<NightSchoolConfiguration
         new NightSchoolApplication().run(args);
     }
 
-    @Override
-    public String getName() {
-        return "hello-world";
-    }
 
     @Override
     public void initialize(Bootstrap<NightSchoolConfiguration> bootstrap) {
-        // nothing to do yet
-        bootstrap.addBundle(new AssetsBundle("/webapp","/webapp"));
+        bootstrap.addBundle(new AssetsBundle("/webapp/html","/app"));
     }
 
     @Override
     public void run(NightSchoolConfiguration configuration,
                     Environment environment) {
-        final SayingResources resource = new SayingResources(
-                configuration.getTemplate(),
-                configuration.getDefaultName()
-        );
-        environment.jersey().register(resource);
         environment.jersey().register(new UserController());
+        environment.jersey().register(new CartController());
+        environment.jersey().register(new CommodityController());
     }
 
 }

@@ -41,6 +41,8 @@ dependencies {
     compile 'org.liquibase:liquibase-core:3.3.2'
     compile 'org.liquibase.ext:liquibase-postgresql:3.0'
     compile 'net.sourceforge.jtds:jtds:1.2.7'
+    compile 'com.sun.jersey.contribs:jersey-multipart:1.18.1'
+
 }
 
 sourceSets {

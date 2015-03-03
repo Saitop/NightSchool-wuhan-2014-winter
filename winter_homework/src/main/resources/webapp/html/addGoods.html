@@ -5,6 +5,9 @@
     <title>欢迎进入宝贝编辑界面</title>
     <link rel="stylesheet" href="css/login.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="css/editGoods.css" media="screen" title="no title" charset="utf-8">
+    <script src="js/underscore-min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/addGoods.js"></script>
   </head>
 
   <body>
@@ -32,8 +35,8 @@
       <div class="edit_input_unit">
         <span>价格</span>
         <div class="input_area">
-          <input  class="theme_input_text" id="input_new_price" name="new_price" value="" placeholder="                  元">
-          <input  class="theme_input_text" id="input_old_price" name="old_price" value="" placeholder="原价            元">
+          <input  class="theme_input_text" id="input_new_price" name="new_price" placeholder="                  元">
+          <input  class="theme_input_text" id="input_old_price" name="old_price" placeholder="原价            元">
         </div>
       </div>
       <div class="edit_input_unit">
@@ -41,8 +44,12 @@
         <div class="input_area">
           <div class="edit_Img">
             <div id="preview">
-              <img id="imghead" width=100 height=100 border=0 src='imgs/addImg.png' onclick="document.getElementById('addImg').click()">
-              <input id="addImg" type="file" onchange="previewImage(this)"/>
+              <img id="imghead" width=100 height=100 border=0 src='imgs/addImg.png' onclick="addImg()">
+              <form action="/file/upload" method="post"  enctype="multipart/form-data"  target="hidden_frame">
+              <input id="add_img"  name="file" type="file"size="45" hidden/>
+                <input type="submit" id="submit_img" hidden  />
+              </form>
+              <iframe  src="/file/upload" name='hidden_frame' id="hidden_frame" hidden></iframe>
             </div>
           </div>
         </div>
@@ -66,17 +73,16 @@
             <input type="button" name="some_name" value="A">
             <input type="button" name="some_name" value="B">
           </div>
-          <textarea name="Name" rows="8" cols="40" >
+          <textarea id="input_desc_goods" name="Name" rows="8" cols="40" >
           </textarea>
         </div>
       </div>
       <div class="edit_input_unit">
-        <input type="button" class="theme_button publish_button"name="some_name" value="立刻发布">
+        <input type="button" class="theme_button publish_button"name="some_name" value="立刻发布" onclick="addGoods()">
       </div>
     </div>
 
     <footer>
     </footer>
-<script type="text/javascript" src="js/uploadImg.js"></script>
   </body>
 </html>

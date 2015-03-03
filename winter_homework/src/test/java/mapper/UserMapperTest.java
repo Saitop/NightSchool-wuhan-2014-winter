@@ -1,5 +1,6 @@
 package mapper;
 
+import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 import org.nightschool.mapper.UserMapper;
 import org.nightschool.model.User;
@@ -18,14 +19,14 @@ public class UserMapperTest {
     UserMapper mapper;
 
     public UserMapperTest() throws IOException {
-        mapper = MyBatisUtil.getFactory().openSession().getMapper(UserMapper.class);
-        mapper.insert(new User("Jane", "password"));
+        SqlSession session = MyBatisUtil.getFactory().openSession();
+        mapper = session.getMapper(UserMapper.class);
     }
 
     @Test
-    public void should_get_users_and_num_is_zero() throws Exception {
+    public void should_get_users_and_num_is_three() throws Exception {
         List<User> users=mapper.getUsers();
-        assertThat(users.size(),is(1));
+        assertThat(users.size(),is(3));
     }
     @Test
     public void should_get_data_after_insert_user() throws Exception {
@@ -36,9 +37,10 @@ public class UserMapperTest {
         assertThat(users.size(), is(1+len));
     }
 
+
     @Test
     public void insert_data_success(){
-        boolean r=true;
+        boolean r=false;
         r = mapper.insert(new User("Jane2", "password2"));
         assertTrue(r);
     }
@@ -66,14 +68,36 @@ public class UserMapperTest {
 
     @Test
     public void password_is_right() throws Exception {
-        User u=new User("Jane","password");
+        User u=new User("Jane","Password");
         boolean passwordCorrect = mapper.isPasswordCorrect(u);
         assertTrue(passwordCorrect);
     }
     @Test
     public void password_is_wrong() throws Exception {
-        User u=new User("Jane","password0");
+        User u=new User("Jane","Password0");
         boolean passwordCorrect = mapper.isPasswordCorrect(u);
         assertFalse(passwordCorrect);
+    }
+
+    @Test
+    public void should_get_true_if_is_admin() throws Exception {
+       String name="admin";
+        boolean isAdmin = mapper.isAdmin(name);
+        assertTrue(isAdmin);
+    }
+
+
+    @Test
+    public void should_get_false_if_is_not_admin() throws Exception {
+        String name="Jane";
+        boolean isAdmin = mapper.isAdmin(name);
+        assertFalse(isAdmin);
+    }
+
+    @Test
+    public void get_id_by_name() throws Exception {
+        String name="Jane";
+       int id= mapper.getIdByName(name);
+        assertThat(id,is(1));
     }
 }
