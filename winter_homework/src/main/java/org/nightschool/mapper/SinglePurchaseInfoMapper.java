@@ -27,4 +27,7 @@ public interface SinglePurchaseInfoMapper {
 
     @Update("update single_purchase_info set status = #{0} where id=#{1} ")
     public boolean updateStatusSinglePurchaseInfo(String status,int id);
+
+    @Select("select count(*)from single_purchase_info where buyer_id=#{buyerId} and commodity_id=#{commodityId} and status = 'inCart';")
+    public int isInCart(SinglePurchaseInfo singlePurchaseInfo);
 }

@@ -477,3 +477,7 @@ a{
 .unit input{
   float:left;
 }
+.cartGoodsImg{
+width:80px;
+height:80px;
+}

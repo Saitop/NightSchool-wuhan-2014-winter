@@ -11,7 +11,11 @@
   margin-bottom:5%;
 }
 
-.desc{
+.name{
   float:left;
   margin-left:5%;
+}
+.indexGoodsImg{
+width:200px;
+height:200px;
 }

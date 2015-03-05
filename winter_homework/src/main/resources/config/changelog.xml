@@ -5,10 +5,15 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
+    <changeSet author="liquibase-docs" id="createSequence-example">
+        <createSequence cycle="true" incrementBy="1" maxValue="1000000" minValue="1" schemaName="public" sequenceName="seq_id" startValue="1"/>
+    </changeSet>
+
     <changeSet id="create_web_user" author="Jane">
         <createTable tableName="web_user">
-            <column name="id" type="int" autoIncrement="true">
+            <column name="id" type="int"  defaultValue="nextval('seq_id')">
                 <constraints primaryKey="true"/>
+
             </column>
             <column name="name" type="varchar(20)"/>
             <column name="password" type="varchar(20)">
@@ -18,7 +23,7 @@
 
     <changeSet id="admin_default" author="Jane">
         <createTable tableName="admin_user">
-            <column name="id" type="int" autoIncrement="true">
+            <column name="id" type="int" defaultValue="nextval('seq_id')">
                 <constraints primaryKey="true"/>
             </column>
             <column name="name" type="varchar(20)"/>
@@ -121,7 +126,7 @@
         <insert tableName="commodity">
             <column name="name" value="牙刷"/>
             <column name="com_desc" value="高露洁牙刷"/>
-            <column name="img_url" value="../src/img"/>
+            <column name="img_url" value="imgs/牙刷.png"/>
             <column name="old_price" value="12"/>
             <column name="new_price" value="2"/>
             <column name="stock" value="23"/>
@@ -133,7 +138,7 @@
 
     <changeSet id="6" author="Jane" dbms="postgresql">
         <insert tableName="single_purchase_info">
-            <column name="buyer_id" value="1"/>
+            <column name="buyer_id" value="2"/>
             <column name="commodity_id" value="1"/>
             <column name="num" value="2"/>
             <column name="date"  valueComputed="current_datetime"/>
@@ -144,7 +149,7 @@
 
     <changeSet id="7" author="Jane" dbms="postgresql">
         <insert tableName="single_purchase_info">
-            <column name="buyer_id" value="2"/>
+            <column name="buyer_id" value="3"/>
             <column name="commodity_id" value="1"/>
             <column name="num" value="1"/>
             <column name="date"  valueComputed="current_datetime"/>

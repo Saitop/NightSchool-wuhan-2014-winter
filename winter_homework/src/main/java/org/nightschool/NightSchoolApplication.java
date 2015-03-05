@@ -17,7 +17,7 @@ public class NightSchoolApplication extends Application<NightSchoolConfiguration
 
     @Override
     public void initialize(Bootstrap<NightSchoolConfiguration> bootstrap) {
-        bootstrap.addBundle(new AssetsBundle("/webapp/html","/app"));
+        bootstrap.addBundle(new AssetsBundle("/webapp/html","/app/"));
     }
 
     @Override

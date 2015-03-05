@@ -8,6 +8,7 @@ import java.util.Date;
 public class SinglePurchaseInfo {
     private int buyerId;
     private int commodityId;
+    private int id;
     private int num;
     private Date date;
     private String status;
@@ -23,27 +24,51 @@ public class SinglePurchaseInfo {
 
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
     public int getBuyerId() {
         return buyerId;
+    }
+
+    public void setBuyerId(int buyerId) {
+        this.buyerId = buyerId;
     }
 
     public int getCommodityId() {
         return commodityId;
     }
 
+    public void setCommodityId(int commodityId) {
+        this.commodityId = commodityId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getNum() {
         return num;
     }
 
+    public void setNum(int num) {
+        this.num = num;
+    }
+
     public Date getDate() {
         return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

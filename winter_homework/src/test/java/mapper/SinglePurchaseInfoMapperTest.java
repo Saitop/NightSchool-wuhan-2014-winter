@@ -21,7 +21,7 @@ public class SinglePurchaseInfoMapperTest {
     @Test
     public void inser_one_purchase_record() throws Exception {
         mapper= MyBatisUtil.getFactory().openSession().getMapper(SinglePurchaseInfoMapper.class);
-        mapper.insert(new SinglePurchaseInfo(1,1,2,new Date(),"addCart"));
+        mapper.insert(new SinglePurchaseInfo(2,1,2,new Date(),"addCart"));
     }
 
     @Test
@@ -52,8 +52,23 @@ public class SinglePurchaseInfoMapperTest {
         mapper= MyBatisUtil.getFactory().openSession().getMapper(SinglePurchaseInfoMapper.class);
         SqlSession sqlSession = MyBatisUtil.getFactory().openSession();
         SinglePurchaseInfoMapper m= sqlSession.getMapper(SinglePurchaseInfoMapper.class);
-        m.updateStatusSinglePurchaseInfo("Order", 1);
+        m.updateStatusSinglePurchaseInfo("Order", 2);
         sqlSession.commit();
         assertThat(mapper.getInfoById(1).getStatus(), is("Order"));
     }
+
+    @Test
+    public void should_get_more_than_one_if_in_cart() throws Exception {
+        mapper= MyBatisUtil.getFactory().openSession().getMapper(SinglePurchaseInfoMapper.class);
+        int inCart = mapper.isInCart(new SinglePurchaseInfo(2, 1, 2, new Date(), "addCart"));
+        assertThat(inCart, is(1));
+    }
+    @Test
+    public void should_get_zero_if_not_in_cart() throws Exception {
+        mapper= MyBatisUtil.getFactory().openSession().getMapper(SinglePurchaseInfoMapper.class);
+        int inCart = mapper.isInCart(new SinglePurchaseInfo(3, 1, 2, new Date(), "addCart"));
+        assertThat(inCart,is(0));
+    }
+
+
 }

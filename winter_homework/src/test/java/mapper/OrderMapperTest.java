@@ -17,9 +17,9 @@ public class OrderMapperTest {
     @Test
     public void create_one_new_order() throws Exception {
         mapper = MyBatisUtil.getFactory().openSession().getMapper(OrderMapper.class);
-        Order order=new Order(1,1,"Wait");
+        Order order=new Order(3,1,"Wait");
         mapper.insert(order);
-        assertThat(mapper.getOrderByUserId(1).size(),is(1));
+        assertThat(mapper.getOrderByUserId(3).size(),is(1));
     }
 
     @Test

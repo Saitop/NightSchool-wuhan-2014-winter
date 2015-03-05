@@ -5,10 +5,7 @@ import org.nightschool.mapper.UserMapper;
 import org.nightschool.model.User;
 import org.nightschool.mybatis.MyBatisUtil;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 
@@ -40,12 +37,16 @@ public class UserController{
     @POST
     @Path("login")
     @Consumes(MediaType.APPLICATION_JSON)
-    public boolean login(User u) throws IOException {
+    public int login(User u) throws IOException {
         UserMapper mapper = MyBatisUtil.getFactory().openSession().getMapper(UserMapper.class);
-        boolean login =mapper.isPasswordCorrect(u);
-
-        return login;
+        if(mapper.isPasswordCorrect(u)){
+            return mapper.getIdByName(u.getUserName());
+        }
+        else{
+        return 0;
+        }
     }
+
     @POST
     @Path("adminLogin")
     @Consumes(MediaType.APPLICATION_JSON)

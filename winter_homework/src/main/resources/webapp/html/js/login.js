@@ -61,6 +61,8 @@ function doLogin(u){
            else{
            setCookie("name",$("#login_name").val());
            setCookie("password",$("#login_password").val());
+            setCookie("admin",false);
+           setCookie("userId",match);
            document.location.href="index.html";
            }
          }
@@ -80,6 +82,7 @@ function doAdminLogin(u){
            setCookie("name",$("#login_name").val());
            setCookie("password",$("#login_password").val());
             setCookie("admin",true);
+              setCookie("userId",match);
            document.location.href="index.html?id=1";
            }
          }

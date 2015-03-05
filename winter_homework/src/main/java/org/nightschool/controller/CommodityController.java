@@ -11,13 +11,14 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.*;
+import java.util.List;
 
 //import com.sun.jersey.media.multipart.FormDataParam;
 /**
  * Created by Administrator on 2015/2/27.
  */
 
-@Path("/file")
+@Path("/commodity")
 @Produces(MediaType.APPLICATION_JSON)
 public class CommodityController {
     public String fileName;
@@ -39,8 +40,26 @@ public class CommodityController {
         writeToFile(uploadedInputStream, uploadedFileLocation);
         String output = "File uploaded to : " + uploadedFileLocation;
         return Response.status(200).entity(output).build();
-
     }
+
+    @POST
+    @Path("/getCommodities")
+    public List<Commodity> getCommodities() throws IOException {
+        SqlSession session = MyBatisUtil.getFactory().openSession();
+        CommodityMapper mapper = session.getMapper(CommodityMapper.class);
+        List<Commodity> commodities = mapper.getCommodities();
+        System.out.println(commodities.size()+"*************");
+        return commodities;
+    }
+    @POST
+    @Path("getCommodityById")
+    public Commodity getCommodityById(int id) throws IOException {
+        SqlSession session = MyBatisUtil.getFactory().openSession();
+        CommodityMapper mapper = session.getMapper(CommodityMapper.class);
+        Commodity commodity = mapper.getById(id);
+       return commodity;
+    }
+
     @POST
     @Path("addCommodity")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -62,6 +81,7 @@ public class CommodityController {
         out.flush();
         out.close();
     }
+
 
 
 }

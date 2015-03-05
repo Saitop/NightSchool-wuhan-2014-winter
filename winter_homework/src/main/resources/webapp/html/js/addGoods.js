@@ -1,5 +1,6 @@
 function addImg(){
 $("#add_img").click();
+
 }
 function uploadImg(){
 $("#submit_img").click();
@@ -8,12 +9,14 @@ $("#submit_img").click();
 function addGoods(){
   $.ajax({
      type:"GET",
-     url:"/file/upload/fileName",
+     url:"/commodity/upload/fileName",
      contentType:"application/json",
      dataType: "text",
      beforeSend:uploadImg,
      success:function(url){
      if(url){
+     console.log("url"+url);
+     $("#imghead").attr("src",url);
      add(getGoods(url));
      }
      else{
@@ -37,7 +40,7 @@ function getGoods(url){
 function add(goods){
 $.ajax({
           type:"POST",
-          url:"/file/addCommodity",
+          url:"/commodity/addCommodity",
           data:JSON.stringify(goods),
           contentType:"application/json",
           beforeSend:getGoods,

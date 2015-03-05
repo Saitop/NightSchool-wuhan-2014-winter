@@ -98,6 +98,6 @@ public class UserMapperTest {
     public void get_id_by_name() throws Exception {
         String name="Jane";
        int id= mapper.getIdByName(name);
-        assertThat(id,is(1));
+        assertThat(id,is(2));
     }
 }

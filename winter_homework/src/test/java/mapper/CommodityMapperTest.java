@@ -38,4 +38,11 @@ public class CommodityMapperTest {
         mapper.deleteByID(id);
         assertThat(mapper.getCommodities().size(),is(1));
     }
+
+    @Test
+    public void should_get_commodity_if_id_is_right() throws Exception {
+        mapper = MyBatisUtil.getFactory().openSession().getMapper(CommodityMapper.class);
+        Commodity commodity = mapper.getById(1);
+        assertThat(commodity.getName(),is("牙刷"));
+    }
 }
