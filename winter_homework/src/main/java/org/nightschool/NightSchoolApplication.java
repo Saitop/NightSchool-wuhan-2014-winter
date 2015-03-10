@@ -27,5 +27,4 @@ public class NightSchoolApplication extends Application<NightSchoolConfiguration
         environment.jersey().register(new CartController());
         environment.jersey().register(new CommodityController());
     }
-
 }

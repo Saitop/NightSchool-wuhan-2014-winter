@@ -116,7 +116,7 @@ header{
   background-repeat: no-repeat;
   width:70%;
 }
-#input_new_price,#input_old_price{
+#input_new_price,#input_old_price,#input_stock{
   width:15%;
   margin-right:40%;
   padding-left:1px;
@@ -151,13 +151,7 @@ header{
   font-size:1.4em;
   width: 70%;
 }
-.add_button{
-  margin-top:30px;
-  width:45%;
-  height:24px;
-  margin-left:5%;
-  border-radius: 1px;
-}
+
 .option_button{
   float: left;
   margin-left: 55%;
@@ -173,11 +167,7 @@ header{
   background-color:rgb(255,69,0);
   color:white;
 }
-.small_block{
-  float:left;
-  width:50px;
-  height:20px;
-}
+
 /*HREF START*/
 a{
   text-decoration-line: inherit;
@@ -240,6 +230,10 @@ a{
   float:left;
   margin-left:2%;
 }
+.other_option{
+float: left;
+ width: 100%;
+ }
 /*cart*/
 .all_goods{
   float:left;
@@ -331,6 +325,17 @@ a{
   width:12.5%;
   text-align:center;
 }
+.old_price{
+color: dimgrey;
+font-weight:bold;
+font-size: medium;
+text-decoration: line-through;
+}
+.new_price{
+color: black;
+font-weight:bold;
+font-size: medium;
+}
 .desc_left{
   float:left;
   width:20%;
@@ -350,30 +355,8 @@ a{
 }
 
 /*managerGoods*/
-.left{
-  width: 20%;
-  overflow: hidden;
-  height: 600px;
-  float:left;
-  border-color: gainsboro;
-  border-style: inset;
-  border-width: thin;
-  margin-left:20px;
-}
 
-.right{
-  width: 70%;
-  overflow: hidden;
 
-  float:left;
-}
-.menu{
-  color: rgb(92,151,212);
-  width: 90px;
-  margin-bottom: 10px;
-  margin-left: auto;
-  margin-right: auto;
-}
 .undefine{
   background-color: rgb(92,151,212);
   color:white;
@@ -415,29 +398,7 @@ a{
   float:left;
   margin-top:40px;
 }
-.a_1,.a_2,.a_3,.a_4,.a_5,.a_6{
-  float:left;
-}
-.a_1{
-  width:20%;
-  padding: 3 40 3 40;
-}
-.a_2,.a_3,.a_4,.a_5,.a_6{
-  width:10%;
-  padding: 3 10 3 10;
-}
-.a_3,.a_4{
-  color:blue;
-  background: url(../imgs/up.png) center right;
-  background-repeat: no-repeat;
 
-}
-.a_5{
-  color:blue;
-  background: url(../imgs/down.png) center right;
-  background-repeat: no-repeat;
-
-}
 .select_all_top{
   border-bottom-color: rgb(233,233,233);
   border-style:inset;
@@ -452,32 +413,17 @@ a{
   float:left;
   width:100%;
 }
-.unit img{
-  width:60px;
-  height:60px;
-  float:left;
-}
-.unit{
-  overflow:hidden;
-}
-.unit div{
-  float:left;
-}
-.unit div:nth-of-type(1){
-  color:blue;
-  width:20%;
-}
-.unit div:nth-of-type(2){
-  color:rgb(255, 64, 1);
-  width:10%;
-}
-.unit div(:nth-of-type(3),:nth-of-type(4),:nth-of-type(5),:nth-of-type(6)){
-  width:10%;
-}
-.unit input{
-  float:left;
-}
+
+
 .cartGoodsImg{
 width:80px;
 height:80px;
+}
+
+.name{
+  float:left;
+}
+.logout{
+color: blue;
+margin-top: 10px;
 }

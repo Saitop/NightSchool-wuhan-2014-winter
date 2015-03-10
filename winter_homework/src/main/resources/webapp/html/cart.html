@@ -14,14 +14,18 @@
       <div class="header_right">
         <div class="user_info">
           <img src="imgs/login/v.jpg" alt="" />
-          曹洋洋
+
         </div>
         <div class="cart">
           <img src="imgs/login/cart.png" alt="" />
+          <a href="cart.html">
           购物车
+          </a>
         </div>
         <div class="goods_manager">
+          <a href="managerGoods.html">
           商品管理
+          </a>
         </div>
       </div>
     </header>
@@ -35,20 +39,20 @@
     <div class="info_head">
       <div  class="all_goods">
             全部商品
-            <span class="theme_color">8</span>
+            <span class="theme_color" id="cart_all_goods_num"></span>
       </div>
       <div class="select_goods">
         已选商品
-        <span class="theme_color">￥123</span>
+        <span class="theme_color cart_selected_goods_price"></span>
       </div>
       <div class="check_out">
-        <input class="theme_button" type="button" name="some_name" value="结算">
+        <input class="theme_button" type="button" name="some_name" value="结算"  onclick="checkOut()">
       </div>
     </div>
     <div class="body">
       <div id="table_top">
         <div  id="select_all">
-        <input type="checkbox" name="some_name" value="全选"><span>全选</span>
+        <input type="checkbox" name="some_name" value="全选" onclick="selectAll()"><span>全选</span>
         </div>
         <div id="goods_info_title">
           商品信息
@@ -71,24 +75,23 @@
     </div>
     <div class="info_footer">
       <div class="select">
-            <input type="checkbox" name="some_name" value="">全部
+            <input type="checkbox" name="some_name" value="" onclick="selectAll()">全部
       </div>
       <div id="delete_selected">
       删除
       </div>
       <div id="count_selected">
       已选商品
-      <span class="theme_color">1</span>件
+      <span class="theme_color" id="cart_selected_goods_num"></span>件
       </div>
       <div id="sum_selected">
         合计
-        <span class="theme_color">￥999</span>
+        <span class="theme_color cart_selected_goods_price"></span>
       </div>
       <div id="check_out">
-        <input class="theme_button" type="button" name="some_name" value="结算">
+        <input class="theme_button" type="button" name="some_name" value="结算" onclick="checkOut()">
       </div>
     </div>
-
     <footer>
     </footer>
 

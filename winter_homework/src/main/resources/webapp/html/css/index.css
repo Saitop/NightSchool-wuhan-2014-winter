@@ -9,13 +9,40 @@
   border-style: ridge;
   border-width: thin;
   margin-bottom:5%;
+  overflow: hidden;
 }
 
-.name{
-  float:left;
-  margin-left:5%;
-}
 .indexGoodsImg{
 width:200px;
 height:200px;
+float: left;
+}
+
+.goodsDesc{
+float: left;
+margin:10px;
+width:100%;
+height: 20%;
+}
+.add_button{
+  width:45%;
+  height:24px;
+  border-radius:3px;
+  margin-left: 25%;
+}
+.free_shipping{
+  width: 28px;
+  float:left;
+  margin-top:3px;
+  margin-bottom:3px;
+  padding:1px;
+  height:14px;
+  font-size:8px;
+  border-radius:1px;
+}
+.new_price{
+  font-size:1.5em;
+   float:left;
+   width:20%;
+   margin-left:10px;
 }

@@ -15,13 +15,16 @@ public class Commodity {
     private double newPrice;
     private int stock;
     private int salesVolume;
-    private int ownerId;
+    private int creatorId;
     private Date publishDate;
+    private boolean freeShipping;
+    private boolean sevenDaysReturn;
 
     public Commodity() {
     }
 
-    public Commodity( String name, String comDesc, String imgUrl, double oldPrice, double newPrice, int stock, int salesVolume, int ownerId) {
+    public Commodity( String name, String comDesc, String imgUrl, double oldPrice,
+                      double newPrice, int stock, int salesVolume, int creatorId, boolean freeShipping, boolean sevenDaysReturn) {
         this.name = name;
         this.comDesc = comDesc;
         this.imgUrl = imgUrl;
@@ -29,7 +32,9 @@ public class Commodity {
         this.newPrice = newPrice;
         this.stock = stock;
         this.salesVolume = salesVolume;
-        this.ownerId = ownerId;
+        this.creatorId = creatorId;
+        this.freeShipping = freeShipping;
+        this.sevenDaysReturn = sevenDaysReturn;
     }
 
     public int getId() {
@@ -96,13 +101,18 @@ public class Commodity {
         this.salesVolume = salesVolume;
     }
 
-    public int getOwnerId() {
-        return ownerId;
+    public int getCreatorId() {
+        return creatorId;
     }
 
-    public void setOwnerId(int ownerId) {
-        this.ownerId = ownerId;
+    public void setCreatorId(int creatorId) {
+        this.creatorId = creatorId;
     }
+
+//    public String getPublishDate() {
+//        return publishDate.toString();
+//    }
+
 
     public Date getPublishDate() {
         return publishDate;
@@ -110,5 +120,21 @@ public class Commodity {
 
     public void setPublishDate(Date publishDate) {
         this.publishDate = publishDate;
+    }
+
+    public boolean isFreeShipping() {
+        return freeShipping;
+    }
+
+    public void setFreeShipping(boolean freeShipping) {
+        this.freeShipping = freeShipping;
+    }
+
+    public boolean isSevenDaysReturn() {
+        return sevenDaysReturn;
+    }
+
+    public void setSevenDaysReturn(boolean sevenDayReturn) {
+        this.sevenDaysReturn = sevenDayReturn;
     }
 }

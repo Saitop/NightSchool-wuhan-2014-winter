@@ -1,3 +1,13 @@
+$(document).ready(function() {
+    var admin=getCookie("admin");
+    console.log(admin);
+    if(admin==null){
+        $(".body").empty();
+        alert("您无法访问此页面");
+        document.location.href="index.html";
+        }
+});
+
 function addImg(){
 $("#add_img").click();
 
@@ -15,7 +25,6 @@ function addGoods(){
      beforeSend:uploadImg,
      success:function(url){
      if(url){
-     console.log("url"+url);
      $("#imghead").attr("src",url);
      add(getGoods(url));
      }
@@ -31,10 +40,13 @@ function getGoods(url){
       imgUrl:url,
       oldPrice:$("#input_old_price").val(),
       newPrice:$("#input_new_price").val(),
-      stock:1,
-      salesVolume:1,
-      ownerId:1
+      stock:$("#input_stock").val(),
+      salesVolume:0,
+      creatorId:getCookie("userId"),
+      freeShipping:$("#input_free_shipping").is(':checked'),
+      sevenDaysReturn:$("#input_seven_days_return").is(':checked')
       }
+      console.log("c1"+$("#input_free_shipping").is(':checked'));
       return g;
 }
 function add(goods){
@@ -46,6 +58,7 @@ $.ajax({
           beforeSend:getGoods,
           success:function(result){
           alert("发布新的商品成功");
+          location.ht
          }
      });
 }

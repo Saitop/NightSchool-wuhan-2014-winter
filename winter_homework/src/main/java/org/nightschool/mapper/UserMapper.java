@@ -16,7 +16,7 @@ public interface UserMapper {
     @Select("select * from web_user")
     public List<User> getUsers();
 
-    @Insert("insert into web_user(name, password) Values(#{userName},#{password});")
+    @Insert("insert into web_user(name, password) Values(#{userName},md5(#{password}||#{userName}));")
     public boolean insert(User user);
 
     @Select("select * from web_user where name like #{name};")
@@ -32,15 +32,18 @@ public interface UserMapper {
     @Select("select count(*) from admin_user where name like #{name};")
     public boolean isAdmin(String name);
 
-    @Select("select count(*) from web_user where name = #{userName} and password = #{password}")
+    @Select("select count(*) from web_user where name = #{userName} and password =md5(#{password}||#{userName})")
     @Result(javaType = Boolean.class, jdbcType = JdbcType.INTEGER)
     public boolean isPasswordCorrect(User user);
 
-    @Select("select count(*) from admin_user where name = #{userName} and password = #{password}")
+    @Select("select count(*) from admin_user where name = #{userName} and password =md5(#{password}||#{userName})")
     @Result(javaType = Boolean.class, jdbcType = JdbcType.INTEGER)
     public boolean isAdminPasswordCorrect(User user);
 
     @Select("select id from web_user where name = #{userName}")
     public int getIdByName(String name);
+
+    @Select("select id from admin_user where name = #{userName}")
+    public int getAdminIdByName(String name);
     /*modify*/
 }

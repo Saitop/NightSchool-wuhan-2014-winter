@@ -13,7 +13,6 @@ function setCookie(sName, sValue, oExpires, sPath, sDomain, bSecure){
     sCookie+="; secure";
   }
   document.cookie= sCookie;
-  console.log(sCookie);
 }
 function getCookie(sName){
   var sRE="(?:; )?"+sName+"=([^;]*);?";
@@ -34,3 +33,4 @@ function delCookie(sName,sPath,sDomain){
   }
   document.cookie= sCookie;
 }
+

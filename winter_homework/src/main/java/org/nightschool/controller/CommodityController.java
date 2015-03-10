@@ -13,7 +13,6 @@ import javax.ws.rs.core.Response;
 import java.io.*;
 import java.util.List;
 
-//import com.sun.jersey.media.multipart.FormDataParam;
 /**
  * Created by Administrator on 2015/2/27.
  */
@@ -36,8 +35,8 @@ public class CommodityController {
             @FormDataParam("file") InputStream uploadedInputStream,
             @FormDataParam("file") FormDataContentDisposition fileDetail) throws IOException {
         String uploadedFileLocation = "./src/main/resources/webapp/html/imgs/" + fileDetail.getFileName();
-        fileName= "imgs/" + fileDetail.getFileName();
         writeToFile(uploadedInputStream, uploadedFileLocation);
+        fileName= "imgs/" + fileDetail.getFileName();
         String output = "File uploaded to : " + uploadedFileLocation;
         return Response.status(200).entity(output).build();
     }
@@ -48,9 +47,9 @@ public class CommodityController {
         SqlSession session = MyBatisUtil.getFactory().openSession();
         CommodityMapper mapper = session.getMapper(CommodityMapper.class);
         List<Commodity> commodities = mapper.getCommodities();
-        System.out.println(commodities.size()+"*************");
         return commodities;
     }
+
     @POST
     @Path("getCommodityById")
     public Commodity getCommodityById(int id) throws IOException {
@@ -59,6 +58,18 @@ public class CommodityController {
         Commodity commodity = mapper.getById(id);
        return commodity;
     }
+
+    @POST
+    @Path("getMutliCommodity")
+    public List<Commodity> getMutliCommodity(int[] ids) throws IOException {
+        if(ids.length==0)
+            return null;
+        SqlSession session = MyBatisUtil.getFactory().openSession();
+        CommodityMapper mapper = session.getMapper(CommodityMapper.class);
+        List<Commodity> commodities = mapper.getByIdList(ids);
+        return  commodities;
+    }
+
 
     @POST
     @Path("addCommodity")
@@ -70,18 +81,28 @@ public class CommodityController {
         session.commit();
         fileName=null;
     }
+    @POST
+    @Path("delMutliCommodity")
+    public List<Commodity> delMutliCommodity(int[] ids) throws IOException {
+        SqlSession session = MyBatisUtil.getFactory().openSession();
+        CommodityMapper mapper = session.getMapper(CommodityMapper.class);
+       mapper.deleteByIdList(ids);
+        session.commit();
+        List<Commodity> commodities = mapper.getByIdList(ids);
+        return  commodities;
+
+    }
+
     private void writeToFile(InputStream uploadedInputStream, String uploadedFileLocation) throws IOException {
         int read;
         final int BUFFER_LENGTH = 1024;
         final byte[] buffer = new byte[BUFFER_LENGTH];
-        OutputStream out = new FileOutputStream(new File(uploadedFileLocation));
+        File file = new File(uploadedFileLocation);
+        OutputStream out = new FileOutputStream(file);
         while ((read = uploadedInputStream.read(buffer)) != -1) {
             out.write(buffer, 0, read);
         }
         out.flush();
         out.close();
     }
-
-
-
 }

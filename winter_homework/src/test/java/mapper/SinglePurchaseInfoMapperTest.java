@@ -1,74 +1,88 @@
 package mapper;
 
 import org.apache.ibatis.session.SqlSession;
-import org.junit.Ignore;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.nightschool.mapper.SinglePurchaseInfoMapper;
 import org.nightschool.model.SinglePurchaseInfo;
 import org.nightschool.mybatis.MyBatisUtil;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 /**
- * Created by Administrator on 2015/2/28.
+ * Created by Administrator on 2015/2/26.
  */
 public class SinglePurchaseInfoMapperTest {
     SinglePurchaseInfoMapper mapper;
+    SqlSession session;
+
+    @Before
+    public void before() throws IOException {
+        session = MyBatisUtil.getFactory().openSession();
+        mapper= session.getMapper(SinglePurchaseInfoMapper.class);
+    }
+    @After
+    public void after() throws IOException {
+        session.close();
+    }
+
+    @Test
+    public void get_all_single_purchase_info() throws Exception {
+        assertThat(mapper.getSinglePurchases().size(),is(3));
+    }
+
     @Test
     public void inser_one_purchase_record() throws Exception {
-        mapper= MyBatisUtil.getFactory().openSession().getMapper(SinglePurchaseInfoMapper.class);
         mapper.insert(new SinglePurchaseInfo(2,1,2,new Date(),"addCart"));
+        assertThat(mapper.getSinglePurchases().size(),is(4));
     }
 
     @Test
     public void get_single_record_where_status_is_inCart() throws Exception {
-        mapper= MyBatisUtil.getFactory().openSession().getMapper(SinglePurchaseInfoMapper.class);
         List<SinglePurchaseInfo> list = mapper.getInfoByStatus("inCart");
-        assertThat(list.size(),is(1));
+        assertThat(list.size(),is(2));
     }
 
     @Test
-    public void delete_one_data_by_id() throws Exception {
-        mapper= MyBatisUtil.getFactory().openSession().getMapper(SinglePurchaseInfoMapper.class);
-        mapper.deleteSinglePurchaseInfo(1);
-        List<SinglePurchaseInfo> list = mapper.getInfoByStatus("inCart");
-        assertThat(list.size(),is(0));
-    }
-
-    @Test
-    public void get_info_by_id() throws Exception {
+    public void get_single_record_by_id() throws Exception {
         mapper= MyBatisUtil.getFactory().openSession().getMapper(SinglePurchaseInfoMapper.class);
         SinglePurchaseInfo info = mapper.getInfoById(1);
         assertThat(info.getStatus(), is("inCart"));
     }
 
-    @Ignore
     @Test
-    public void change_info_status() throws Exception {
-        mapper= MyBatisUtil.getFactory().openSession().getMapper(SinglePurchaseInfoMapper.class);
-        SqlSession sqlSession = MyBatisUtil.getFactory().openSession();
-        SinglePurchaseInfoMapper m= sqlSession.getMapper(SinglePurchaseInfoMapper.class);
-        m.updateStatusSinglePurchaseInfo("Order", 2);
-        sqlSession.commit();
-        assertThat(mapper.getInfoById(1).getStatus(), is("Order"));
+    public void delete_one_data_by_id() throws Exception {
+        mapper.delete(1);
+        List<SinglePurchaseInfo> list = mapper.getSinglePurchases();
+        assertThat(list.size(),is(2));
     }
 
     @Test
-    public void should_get_more_than_one_if_in_cart() throws Exception {
-        mapper= MyBatisUtil.getFactory().openSession().getMapper(SinglePurchaseInfoMapper.class);
-        int inCart = mapper.isInCart(new SinglePurchaseInfo(2, 1, 2, new Date(), "addCart"));
-        assertThat(inCart, is(1));
+    public void update_status() throws Exception {
+        int a[]={1,2};
+        mapper.updateMutilStatus("Order",a);
+        List<SinglePurchaseInfo> list = mapper.getSinglePurchases();
+        assertThat(list.get(0).getStatus(),is("Order"));
     }
+
     @Test
-    public void should_get_zero_if_not_in_cart() throws Exception {
-        mapper= MyBatisUtil.getFactory().openSession().getMapper(SinglePurchaseInfoMapper.class);
-        int inCart = mapper.isInCart(new SinglePurchaseInfo(3, 1, 2, new Date(), "addCart"));
-        assertThat(inCart,is(0));
+    public void update_num() throws Exception {
+        mapper.updateNum(3,1);
+        SinglePurchaseInfo purchaseInfo = mapper.getInfoById(1);
+        assertThat(purchaseInfo.getNum(),is(3));
     }
 
-
+    @Test
+    public void return_true_if_exist_in_cart() throws Exception {
+        SinglePurchaseInfo purchaseInfo = mapper.getInfoById(1);
+        int count=mapper.isInCart(purchaseInfo);
+        assertTrue(count > 0);
+    }
 }

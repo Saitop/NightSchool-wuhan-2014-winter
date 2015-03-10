@@ -73,6 +73,12 @@ public class UserMapperTest {
         assertTrue(passwordCorrect);
     }
     @Test
+    public void admin_password_is_right() throws Exception {
+        User u=new User("admin","admin");
+        boolean passwordCorrect = mapper.isAdminPasswordCorrect(u);
+        assertTrue(passwordCorrect);
+    }
+    @Test
     public void password_is_wrong() throws Exception {
         User u=new User("Jane","Password0");
         boolean passwordCorrect = mapper.isPasswordCorrect(u);

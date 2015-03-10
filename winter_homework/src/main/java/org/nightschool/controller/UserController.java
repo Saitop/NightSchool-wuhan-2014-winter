@@ -40,6 +40,7 @@ public class UserController{
     public int login(User u) throws IOException {
         UserMapper mapper = MyBatisUtil.getFactory().openSession().getMapper(UserMapper.class);
         if(mapper.isPasswordCorrect(u)){
+            System.out.println("name"+u.getUserName()+"p"+u.getPassword());
             return mapper.getIdByName(u.getUserName());
         }
         else{
@@ -50,10 +51,13 @@ public class UserController{
     @POST
     @Path("adminLogin")
     @Consumes(MediaType.APPLICATION_JSON)
-    public boolean adminLogin(User u) throws IOException {
+    public int adminLogin(User u) throws IOException {
         UserMapper mapper = MyBatisUtil.getFactory().openSession().getMapper(UserMapper.class);
-        boolean login =mapper.isAdminPasswordCorrect(u);
-        return login;
+        if(mapper.isAdminPasswordCorrect(u)){
+            return mapper.getAdminIdByName(u.getUserName());
+        }
+        else
+        return 0;
     }
 
     @POST
@@ -65,5 +69,13 @@ public class UserController{
         boolean result=mapper.insert(u);
         session.commit();
         return result;
+    }
+    @GET
+    @Path("getAdminId")
+   public int getAdminIdByName(String name) throws IOException {
+        SqlSession session = MyBatisUtil.getFactory().openSession();
+        UserMapper mapper = session.getMapper(UserMapper.class);
+        int idByName = mapper.getAdminIdByName(name);
+        return  idByName;
     }
 }
