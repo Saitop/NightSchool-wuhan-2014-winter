@@ -2,8 +2,8 @@
 <html>
   <head>
     <title>欢迎登陆</title>
-    <!- #include virtual="footer.html" ->
-      <link rel="stylesheet" href="css/login.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="css/style.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="css/checkbox.css" media="screen" title="no title" charset="utf-8">
     <script src="js/cookie.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/login.js"></script>
@@ -32,8 +32,12 @@
         <input type="password" class="theme_input_text" id="login_password" name="login_password" placeholder="登录密码">
       </div>
       <div class="other_href">
+        <div class="checkbox">
+          <input type="checkbox" value="1" id="checkboxInput" name="" />
+          <label for="checkboxInput"></label>
+        </div>
         <div class="other_href_left">
-          安全登录插件
+          安全控件登陆
         </div>
         <div  class="other_href_right">
           <a href="#">忘记登录密码?</a>
