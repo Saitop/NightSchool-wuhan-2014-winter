@@ -65,6 +65,7 @@ sourceSets {
 }
 
 run {
+    main = 'org.nightschool.NightSchoolApplication'
     args 'server', 'nightschool.yml'
 }
 

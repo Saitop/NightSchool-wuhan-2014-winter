@@ -1,12 +1,16 @@
 body {
 	font-family: "黑体";
 	font-size: 0.9em;
+	height:100%;
 }
 .body,.info_head,.info_footer {
 	width: 80%;
 	overflow: hidden;
 	float: left;
 	margin-left: 10%;
+}
+.body{
+	min-height: 20%;
 }
 header {
 	background-color: gainsboro;
@@ -21,6 +25,7 @@ footer{
 	height: 40px;
 	width: 100%;
     background: antiquewhite;
+    margin-top:10%;
 }
 #footer_bottom{
 	height:40px;
@@ -36,8 +41,9 @@ footer{
 }
 .logo {
 	margin-left: 4%;
-	height: 10%;
+	height: 15%;
 	margin-top: 2%;
+	min-height: 100px;
 }
 .logo_small {
 	float: left;
@@ -55,6 +61,9 @@ footer{
 	width: 20%;
 	padding-left: 4%;
 	padding: 20px;
+	height: 40%;
+	min-height: 340px;
+   	margin-bottom: 20%;
 	border-color: gainsboro;
 	border-style: inset;
 	border-width: thin;
@@ -62,6 +71,7 @@ footer{
 	border-top-style: outset;
 	border-top-width: medium;
 	margin: 20px;
+
 }
 /*INPUT*/
 	.register_input {
