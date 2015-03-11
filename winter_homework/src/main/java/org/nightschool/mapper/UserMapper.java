@@ -7,15 +7,10 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.type.JdbcType;
 import org.nightschool.model.User;
 
-import java.util.List;
-
 /**
  * Created by Administrator on 2015/2/21.
  */
 public interface UserMapper {
-    @Select("select * from web_user")
-    public List<User> getUsers();
-
     @Insert("insert into web_user(name, password) Values(#{userName},md5(#{password}||#{userName}));")
     public boolean insert(User user);
 
@@ -45,5 +40,5 @@ public interface UserMapper {
 
     @Select("select id from admin_user where name = #{userName}")
     public int getAdminIdByName(String name);
-    /*modify*/
+
 }

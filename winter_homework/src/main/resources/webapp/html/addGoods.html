@@ -13,15 +13,16 @@
   <body>
     <header>
       <div class="header_right">
-        <div class="user_info">
-          <img src="imgs/login/v.jpg" alt="" />
-          曹洋洋
+        <div class="user_info" id="index_name">
+          <div class="name"></div>
+          <img src="imgs/main/v.jpg" alt="" />
         </div>
+        <div id="logout" hidden onclick="logout()">安全退出</div>
       </div>
     </header>
     <div class="head" background-color="black">
       <div class="logo_small">
-        <a href="index.html">  <img src="imgs/login/logo.png" alt="" /></a>
+        <a href="index.html">  <img src="imgs/main/logo.png" alt="" /></a>
       </div>
     </div>
     <div class="body">
@@ -50,7 +51,7 @@
         <div class="input_area">
           <div class="edit_Img">
             <div id="preview">
-              <img id="imghead" width=100 height=100 border=0 src='imgs/addImg.png' onclick="addImg()">
+              <img id="imghead" width=100 height=100 border=0 src='imgs/main/addImg.png' onclick="addImg()">
               <form action="/commodity/upload" method="post"  enctype="multipart/form-data"  target="hidden_frame">
               <input id="add_img"  name="file" type="file"size="45" hidden/>
                 <input type="submit" id="submit_img" hidden  />

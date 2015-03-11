@@ -7,8 +7,11 @@ $(document).ready(function() {
 });
 
 function getUserName(){
- $(".user_info").html(getCookie("userName"));
-  if(getCookie("admin")==false){
+ $(".name").html(getCookie("name")).click(
+  function(){
+  $("#logout").show();
+  });
+  if(getCookie("admin")==null){
   $(".goods_manager").hide();
 }
 }
@@ -101,8 +104,8 @@ return $("<div>")
 function serviceLogo(){
 return $("<div>")
 .attr("class","service_logo")
-.append($("<img>").attr("src", "imgs/login/1.png"))
-.append($("<img>").attr("src", "imgs/login/2.png"));
+.append($("<img>").attr("src", "imgs/main/1.png"))
+.append($("<img>").attr("src", "imgs/main/2.png"));
 }
 
 function goodsPrice(newPrice,oldPrice){
@@ -152,6 +155,22 @@ function doDelete(id){
              getCart();
               }
         });
+}
+function doMutilDelete(){
+    select= _.filter(select,function(id){return id>0});
+    if(select.length==0)
+        alert("客官，您未选择任何商品删除！");
+    else{
+     $.ajax({
+           type:"POST",
+           url:"/cart/deleteMore/"+getCookie("userId"),
+           data:JSON.stringify(select),
+           contentType:"application/json",
+           success:function(result){
+               getCart();
+           }
+           });
+       }
 }
 
 function  modifyNumInCart(id,ind,count){

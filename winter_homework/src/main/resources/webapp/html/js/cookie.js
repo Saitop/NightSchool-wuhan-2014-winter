@@ -34,3 +34,11 @@ function delCookie(sName,sPath,sDomain){
   document.cookie= sCookie;
 }
 
+function logout(){
+    delCookie("name");
+    delCookie("userId");
+    delCookie("password");
+    if(getCookie("admin"))
+        delCookie("admin");
+    document.location.href="index.html";
+}

@@ -128,11 +128,3 @@ function doAdd(newP){
      }
      });
 }
-function logout(){
-    delCookie("name");
-    delCookie("userId");
-    delCookie("password");
-    if(getCookie("admin"))
-        delCookie("admin");
-    location.reload();
-}

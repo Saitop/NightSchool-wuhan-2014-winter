@@ -112,7 +112,7 @@
         <insert tableName="commodity">
             <column name="name" value="牙刷"/>
             <column name="com_desc" value="高露洁牙刷"/>
-            <column name="img_url" value="imgs/牙刷.png"/>
+            <column name="img_url" value="imgs/upload/toothbrush.png"/>
             <column name="old_price" value="12"/>
             <column name="new_price" value="2"/>
             <column name="stock" value="23"/>
@@ -125,7 +125,7 @@
         <insert tableName="commodity">
             <column name="name" value="熊熊 各种呆炒鸡可爱"/>
             <column name="com_desc" value="超级可爱的熊熊"/>
-            <column name="img_url" value="imgs/m-shop-thumb-panda.png"/>
+            <column name="img_url" value="imgs/upload/panda.png"/>
             <column name="old_price" value="65"/>
             <column name="new_price" value="26"/>
             <column name="stock" value="23"/>
@@ -138,7 +138,7 @@
         <insert tableName="commodity">
             <column name="name" value="海豚 好萌好卡哇伊"/>
             <column name="com_desc" value="高智商海豚 主人 我想和你做盆友"/>
-            <column name="img_url" value="imgs/m-shop-prints-dolphin.png"/>
+            <column name="img_url" value="imgs/upload/dolphin.png"/>
             <column name="old_price" value="58"/>
             <column name="new_price" value="28"/>
             <column name="stock" value="20"/>

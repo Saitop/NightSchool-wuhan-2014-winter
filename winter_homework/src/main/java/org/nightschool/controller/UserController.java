@@ -10,16 +10,22 @@ import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 
 /**
- * Created by Administrator on 2015/2/22.
+ * Created by Administrator on 2015/2/25.
  */
 @Path("/users")
 @Produces(MediaType.APPLICATION_JSON)
 public class UserController{
+    SqlSession session;
+    UserMapper mapper;
+    public UserController() throws IOException {
+        this.session = MyBatisUtil.getFactory().openSession();
+        this.mapper = session.getMapper(UserMapper.class);
+    }
+
     @POST
     @Path("isUserExist")
     @Consumes(MediaType.APPLICATION_JSON)
     public boolean isUserExist(String name) throws IOException {
-        UserMapper mapper = MyBatisUtil.getFactory().openSession().getMapper(UserMapper.class);
         String subString=(String)name.subSequence(1,name.length()-1);
         boolean userExist = mapper.isUserExist(subString);
         return userExist;
@@ -28,7 +34,6 @@ public class UserController{
     @Path("isAdmin")
     @Consumes(MediaType.APPLICATION_JSON)
     public boolean isAdmin(String name) throws IOException {
-        UserMapper mapper = MyBatisUtil.getFactory().openSession().getMapper(UserMapper.class);
         String subString=(String)name.subSequence(1,name.length()-1);
         boolean isAdmin = mapper.isAdmin(subString);
         return isAdmin;
@@ -38,9 +43,7 @@ public class UserController{
     @Path("login")
     @Consumes(MediaType.APPLICATION_JSON)
     public int login(User u) throws IOException {
-        UserMapper mapper = MyBatisUtil.getFactory().openSession().getMapper(UserMapper.class);
         if(mapper.isPasswordCorrect(u)){
-            System.out.println("name"+u.getUserName()+"p"+u.getPassword());
             return mapper.getIdByName(u.getUserName());
         }
         else{
@@ -52,20 +55,18 @@ public class UserController{
     @Path("adminLogin")
     @Consumes(MediaType.APPLICATION_JSON)
     public int adminLogin(User u) throws IOException {
-        UserMapper mapper = MyBatisUtil.getFactory().openSession().getMapper(UserMapper.class);
         if(mapper.isAdminPasswordCorrect(u)){
             return mapper.getAdminIdByName(u.getUserName());
         }
-        else
+        else{
         return 0;
+        }
     }
 
     @POST
     @Path("register")
     @Consumes(MediaType.APPLICATION_JSON)
     public boolean register(User u) throws IOException {
-        SqlSession session = MyBatisUtil.getFactory().openSession();
-        UserMapper mapper = session.getMapper(UserMapper.class);
         boolean result=mapper.insert(u);
         session.commit();
         return result;
@@ -73,8 +74,6 @@ public class UserController{
     @GET
     @Path("getAdminId")
    public int getAdminIdByName(String name) throws IOException {
-        SqlSession session = MyBatisUtil.getFactory().openSession();
-        UserMapper mapper = session.getMapper(UserMapper.class);
         int idByName = mapper.getAdminIdByName(name);
         return  idByName;
     }

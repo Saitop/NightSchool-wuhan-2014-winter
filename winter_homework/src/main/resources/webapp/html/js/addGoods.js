@@ -1,17 +1,25 @@
 $(document).ready(function() {
     var admin=getCookie("admin");
-    console.log(admin);
     if(admin==null){
         $(".body").empty();
         alert("您无法访问此页面");
         document.location.href="index.html";
         }
+    getUserName();
 });
+
+function getUserName(){
+    $(".name").html(getCookie("name"));
+    $("#index_name").click(
+    function(){
+        $("#logout").show();
+    });
+ }
 
 function addImg(){
 $("#add_img").click();
-
 }
+
 function uploadImg(){
 $("#submit_img").click();
 };

@@ -99,20 +99,20 @@ header{
   border-width: thin;
 }
 #login_name{
-  background: url(../imgs/login/person.jpg) center left;
+  background: url(../imgs/main/person.jpg) center left;
   background-repeat: no-repeat;
 }
 #login_password{
-  background: url(../imgs/login/password.jpg) center left;
+  background: url(../imgs/main/password.jpg) center left;
   background-repeat: no-repeat;
 }
 #register_name{
-  background: url(../imgs/login/input.png) center right;
+  background: url(../imgs/main/input.png) center right;
   background-repeat: no-repeat;
   width:70%;
 }
 #register_password,#register_confirm_password{
-  background: url(../imgs/login/password.png) center right;
+  background: url(../imgs/main/password.png) center right;
   background-repeat: no-repeat;
   width:70%;
 }
@@ -136,6 +136,10 @@ header{
   background-color:  rgb(255, 69, 0);
   border: 0;
   border-radius: 4px;
+}
+.choice_button{
+  width: 40%;
+  height:20px;
 }
 .publish_button{
   background-color: rgb(72, 152, 1);
@@ -426,4 +430,8 @@ height:80px;
 .logout{
 color: blue;
 margin-top: 10px;
+}
+#logout{
+color: blue;
+float: left;
 }

@@ -19,5 +19,4 @@ public class MyBatisUtil {
             sqlSessionFactory=new SqlSessionFactoryBuilder().build(inputStream);
         return sqlSessionFactory;
     }
-
 }

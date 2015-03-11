@@ -109,14 +109,11 @@ public class Commodity {
         this.creatorId = creatorId;
     }
 
-//    public String getPublishDate() {
-//        return publishDate.toString();
-//    }
-
-
-    public Date getPublishDate() {
-        return publishDate;
+    public String getPublishDate()
+    {
+        return publishDate.toString();
     }
+
 
     public void setPublishDate(Date publishDate) {
         this.publishDate = publishDate;
@@ -137,4 +134,5 @@ public class Commodity {
     public void setSevenDaysReturn(boolean sevenDayReturn) {
         this.sevenDaysReturn = sevenDayReturn;
     }
+
 }

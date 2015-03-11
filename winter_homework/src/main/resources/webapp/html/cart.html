@@ -12,12 +12,13 @@
   <body>
     <header>
       <div class="header_right">
-        <div class="user_info">
-          <img src="imgs/login/v.jpg" alt="" />
-
+        <div class="user_info" id="index_name">
+          <div class="name"></div>
+          <img src="imgs/main/v.jpg" alt="" />
         </div>
+        <div id="logout" hidden onclick="logout()">安全退出</div>
         <div class="cart">
-          <img src="imgs/login/cart.png" alt="" />
+          <img src="imgs/main/cart.png" alt="" />
           <a href="cart.html">
           购物车
           </a>
@@ -32,7 +33,7 @@
     <div class="head" background-color="black">
       <div class="logo_small">
         <a href="index.html">
-        <img src="imgs/login/logo.png" alt="" />
+        <img src="imgs/main/logo.png" alt="" />
       </a>
       </div>
     </div>
@@ -77,7 +78,7 @@
       <div class="select">
             <input type="checkbox" name="some_name" value="" onclick="selectAll()">全部
       </div>
-      <div id="delete_selected">
+      <div id="delete_selected" onclick="doMutilDelete()">
       删除
       </div>
       <div id="count_selected">

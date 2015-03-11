@@ -35,13 +35,13 @@
 }
 #up{
   color:blue;
-  background: url(../imgs/up.png) center right;
+  background: url(../imgs/main/up.png) center right;
   background-repeat: no-repeat;
 
 }
 #down{
   color:blue;
-  background: url(../imgs/down.png) center right;
+  background: url(../imgs/main/down.png) center right;
   background-repeat: no-repeat;
 }
 
@@ -61,6 +61,7 @@
   float:left;
 }
 .ManagerPrice{
+over-flow:hidden;
 color:rgb(255, 64, 1);
   width:10%;
 }
@@ -68,11 +69,13 @@ color:rgb(255, 64, 1);
  color:blue;
  margin-left:2%;
   width:24%;
+  over-flow:hidden;
   padding:2,0,1,2;
   font-size:10px;
 }
 .ManagerStock{
 margin-left:5%;
+over-flow:hidden;
 width: 5%;
 }
 .ManagerSaleVolume{
@@ -80,10 +83,21 @@ margin-left:7%;
 width: 4%;
 }
 .ManagerDate{
-margin-left:7%;
+over-flow:hidden;
+margin-left:8%;
+width: 12%;
+}
+
+.ManagerModify{
+margin-left:1%;
 width: 8%;
 }
-.ManagerModify{
-margin-left:5%;
-width: 8%;
+.yearMonthDay{
+width:100%;
+}
+.hourMin{
+width:100%;
+}
+#modifyOldPrice,#modifyNewPrice,#modifyStock{
+width:50px;
 }

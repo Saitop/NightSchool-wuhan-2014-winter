@@ -14,11 +14,10 @@ $(document).ready(function(){
 });
 
 function getUserName(){
-    $(".user_info").html(getCookie("name"));
     $(".name").html(getCookie("name"));
     $("#index_name").click(
     function(){
-        $(".logout").show();
+        $("#logout").show();
     });
  }
 
@@ -37,6 +36,7 @@ function getGoods(){
 
 function dataToView(data){
     $("#all_unit").empty();
+    $("#name span").html(_.size(data));
     _.chain(data).map(function(goods,ind) {
         return diskDiv(goods,ind);
     }).each(function(div) {
@@ -54,7 +54,7 @@ function diskDiv(goods,ind) {
     .append(goodsStock(goods.stock))
     .append(goodsSalesVolume(goods.salesVolume))
     .append(goodsPublishDate(goods.publishDate))
-    .append(ModifyGoods(goods.id));
+    .append(ModifyGoods(ind,goods));
 }
 
 function selectBox(id,ind){
@@ -75,27 +75,99 @@ function goodsImg(imgUrl){
 function goodsPrice(newPrice,oldPrice){
     return $("<div>").attr("class","ManagerPrice").html(newPrice+"  "+oldPrice);
 }
+function goodsPriceModify(newPrice,oldPrice){
+  return $("<div>").attr("class","ManagerPrice")
+    .append($("<input>")
+        .attr("id","modifyOldPrice")
+        .attr("placeholder",oldPrice))
+    .append($("<input>")
+        .attr("id","modifyNewPrice")
+        .attr("placeholder",newPrice));
+}
 
 function goodsDesc(name,comDesc){
     return $("<div>").attr("class","ManagerDesc").html(name+comDesc);
+}
+function goodsDescModify(name,comDesc){
+    return $("<div>").attr("class","ManagerDesc")
+    .append($("<textarea>")
+        .attr("id","modifyDesc")
+        .attr("placeholder",name+comDesc));
 }
 
 function goodsStock(stock){
     return $("<div>").attr("class","ManagerStock").html(stock);
 }
 
+function goodsStockModify(stock){
+    return $("<div>").attr("class","ManagerStock")
+    .append($("<input>")
+        .attr("id","modifyStock")
+        .attr("placeholder",stock));
+}
 function goodsSalesVolume(salesVolume){
     return $("<div>").attr("class","ManagerSaleVolume").html(salesVolume);
 }
 
 function goodsPublishDate(publishDate){
-    return $("<div>").attr("class","ManagerDate").html(publishDate);
+    var curDate=new Date(publishDate);
+    var date=new Date(curDate.getTime()-24*60*60*1000);
+    var m=date.getMonth()+1;
+    var d=date.getDate();
+    var min=date.getMinutes();
+    if(min<10)
+    min="0"+min;
+    return $("<div>").attr("class","ManagerDate")
+    .append($("<div>").attr("class","yearMonthDay").html(date.getFullYear()+"-"+m+"-"+d))
+    .append($("<div>").attr("class","HourMin").html(date.getHours()+":"+min));
 }
 
-function ModifyGoods(id){
-    return $("<div>").attr("class","ManagerModify").html("编辑宝贝");
+function ModifyGoods(ind,goods){
+    return $("<div>").attr("class","ManagerModify").html("编辑宝贝")
+    .click(function(){
+    doModify(ind,goods);
+    });
 }
+function doModify(ind,goods){
+$(".unit").eq(ind).empty();
+$(".unit").eq(ind)
+ .append(selectBox(goods.id,ind))
+    .append(goodsImg(goods.imgUrl))
+    .append(goodsDescModify(goods.name,goods.comDesc))
+    .append(goodsPriceModify(goods.newPrice,goods.oldPrice))
+    .append(goodsStockModify(goods.stock))
+    .append(goodsSalesVolume(goods.salesVolume))
+    .append(goodsPublishDate(goods.publishDate))
+    .append(choiceButton(goods,ind));
+}
+function choiceButton(goods,ind){
+    return $("<div>").attr("class","ManagerModify")
+    .append($("<input>").attr("type","button").attr("value","×").attr("class","choice_button").click(function(){
+     $(".unit").eq(ind).replaceWith(diskDiv(goods,ind));
+    }))
+    .append($("<input>").attr("type","button").attr("value","√").attr("class","choice_button").click(function(){
+    ajaxModify(goods,ind);
+    }));
+}
+function ajaxModify(goods,ind){
+var g={
+      id:goods.id,
+      comDesc:$("#modifyDesc").val(),
+      oldPrice:$("#modifyOldPrice").val(),
+      newPrice:$("#modifyNewPrice").val(),
+      stock:$("#modifyStock").val(),
+      }
+ $.ajax({
+             type:"POST",
+             url:"/commodity/modify",
+             data:JSON.stringify(g),
+             contentType:"application/json",
+              success:function(result){
+               $(".unit").eq(ind).replaceWith(diskDiv(result,ind));
+              }
+             });
 
+}
 function orderByPrice(){
     flag=-flag;
     if(flag>0)
@@ -129,13 +201,16 @@ function orderByDate(){
         $(".a_5").attr("id","up");
     else
         $(".a_5").attr("id","down");
-    dataToView(_.sortBy(commodities,function(c){return flag*c.publishDate;}));
+
+    dataToView(_.sortBy(commodities,function(c){
+    return flag*new Date(c.publishDate).getTime();
+    }));
 }
 
 function search(){
     var keyWord=$("#serach_goods").val();
     dataToView(_.filter(commodities,function(c){
-    return c.name.indexOf(keyWord)>=0;
+    return (c.name+c.comDesc).indexOf(keyWord)>=0;
     }));
 }
 function selectAll(){

@@ -21,6 +21,13 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 public class CommodityController {
     public String fileName;
+    SqlSession session ;
+    CommodityMapper mapper;
+    public CommodityController() throws IOException {
+        this.session = MyBatisUtil.getFactory().openSession();
+        this.mapper = this.session.getMapper(CommodityMapper.class);
+    }
+
     @GET
     @Path("upload/fileName")
     @Produces(MediaType.APPLICATION_JSON)
@@ -42,21 +49,10 @@ public class CommodityController {
     }
 
     @POST
-    @Path("/getCommodities")
+    @Path("getCommodities")
     public List<Commodity> getCommodities() throws IOException {
-        SqlSession session = MyBatisUtil.getFactory().openSession();
-        CommodityMapper mapper = session.getMapper(CommodityMapper.class);
         List<Commodity> commodities = mapper.getCommodities();
         return commodities;
-    }
-
-    @POST
-    @Path("getCommodityById")
-    public Commodity getCommodityById(int id) throws IOException {
-        SqlSession session = MyBatisUtil.getFactory().openSession();
-        CommodityMapper mapper = session.getMapper(CommodityMapper.class);
-        Commodity commodity = mapper.getById(id);
-       return commodity;
     }
 
     @POST
@@ -64,19 +60,14 @@ public class CommodityController {
     public List<Commodity> getMutliCommodity(int[] ids) throws IOException {
         if(ids.length==0)
             return null;
-        SqlSession session = MyBatisUtil.getFactory().openSession();
-        CommodityMapper mapper = session.getMapper(CommodityMapper.class);
         List<Commodity> commodities = mapper.getByIdList(ids);
         return  commodities;
     }
-
 
     @POST
     @Path("addCommodity")
     @Consumes(MediaType.APPLICATION_JSON)
     public void addCommodity(Commodity c) throws IOException {
-        SqlSession session = MyBatisUtil.getFactory().openSession();
-        CommodityMapper mapper = session.getMapper(CommodityMapper.class);
         mapper.insert(c);
         session.commit();
         fileName=null;
@@ -84,13 +75,19 @@ public class CommodityController {
     @POST
     @Path("delMutliCommodity")
     public List<Commodity> delMutliCommodity(int[] ids) throws IOException {
-        SqlSession session = MyBatisUtil.getFactory().openSession();
-        CommodityMapper mapper = session.getMapper(CommodityMapper.class);
-       mapper.deleteByIdList(ids);
+        mapper.deleteByIdList(ids);
         session.commit();
-        List<Commodity> commodities = mapper.getByIdList(ids);
+        List<Commodity> commodities = mapper.getCommodities();
         return  commodities;
 
+    }
+    @POST
+    @Path("modify")
+    public Commodity modifyCommodity(Commodity commodity) throws IOException {
+        mapper.update(commodity);
+        session.commit();
+        Commodity commodityNew = mapper.getById(commodity.getId());
+        return commodityNew;
     }
 
     private void writeToFile(InputStream uploadedInputStream, String uploadedFileLocation) throws IOException {
