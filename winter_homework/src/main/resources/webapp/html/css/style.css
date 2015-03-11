@@ -16,6 +16,18 @@ header {
 	margin-top: -10px;
 	float: left;
 }
+footer{
+	float: left;
+	height: 40px;
+	width: 100%;
+    background: antiquewhite;
+}
+#footer_bottom{
+	height:40px;
+	float:left;
+	margin-left:40%
+}
+
 .header_right {
 	float: left;
 	overflow: hidden;
